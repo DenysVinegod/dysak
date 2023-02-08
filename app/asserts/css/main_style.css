@@ -24,4 +24,6 @@ html {
     border: outset 3px red;
     background-color: rgb(255, 53, 53);
     color: white;
+    padding: 10px 20px;
+    text-align: center;
 }

@@ -19,7 +19,7 @@
         <img src='/app/asserts/images/logo.png'>
     </div>
 
-    <form action='' method='POST'>
+    <form action='' method='POST' id='sign_in'>
 
         <fieldset>
             <table>
@@ -46,8 +46,29 @@
                 </tr>
             </table>
         </fieldset>
-
     </form>
+
+    <?php
+        if (isset($_GET['passgen'])) { ?>
+            <div id="password_generator">
+                <form action='' method='POST'>
+                    <fieldset>
+                        <div>
+                            <label for='generated_password'>Password</label>
+                            <input type='textbox' id='generated_password' name="gen_pass">
+                        </div>
+                        <div>
+                            <label for='hashed_password'>Hashed</label>
+                            <input type='textbox' id='hashed_password' name='hash_pass'>
+                        </div>
+                        <div>
+                            <input type='submit' value='Генерувати!'>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        <?php }
+    ?>
 
     </body>
 </html>

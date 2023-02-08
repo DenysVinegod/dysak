@@ -25,9 +25,19 @@
     }
 
     if (isset($_SESSION['caution'])) {
-        if ($_SESSION['caution'] !== '') {
-            echo ('<div id="caution">'.$_SESSION['caution'].'</div>');
+        if (isset($_GET['caution'])) {
+            if ($_GET['caution'] == 'ok') {
+                $_SESSION['caution'] = '';
+                header('Location: .');
+            }
         }
+        
+        if ($_SESSION['caution'] !== '') { ?>
+            <div id="caution">
+                <?php echo $_SESSION['caution']; ?>
+                <a href=".?caution=ok">OK</a>
+            </div>
+        <?php }
     }
 
     if (isset($_SESSION['logout'])) {

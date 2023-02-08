@@ -40,3 +40,9 @@ input[type=submit] {
     padding: 5px 10px;
     float: right;
 }
+
+#password_generator > form {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
