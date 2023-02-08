@@ -1,0 +1,27 @@
+html {
+    background-color: white;
+    color: #100505;
+}
+
+.outer_wrapper{
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.outer_wrapper.header{
+    flex-grow: 1;
+}
+
+.outer_wrapper.body{
+    flex-grow: 2;
+}
+
+.outer_wrapper.footer{
+    flex-grow: 1;
+}
+
+#caution {
+    border: outset 3px red;
+    background-color: rgb(255, 53, 53);
+    color: white;
+}

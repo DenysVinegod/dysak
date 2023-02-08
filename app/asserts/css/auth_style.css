@@ -1,0 +1,42 @@
+html {
+    background-color: #100505;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#logo > img {
+    width: 40%;
+    margin-bottom: 50px;
+}
+
+form{
+    width: 40%;
+    margin: 0 auto;
+}
+
+table {
+    font-size: 1.2em;
+    margin: 0 auto;
+}
+
+th, td {
+    padding-bottom: 0.5em;
+}
+
+th {
+    font-weight: 200;
+    text-align: left;
+}
+
+table td.label {
+    padding-right: 30px;
+}
+
+input[type=submit] {
+    margin-top: 10px;
+    background-color: #100505;
+    color: white;
+    border: solid 2px white;
+    padding: 5px 10px;
+    float: right;
+}
