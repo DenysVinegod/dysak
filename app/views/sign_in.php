@@ -1,3 +1,36 @@
+<?php
+
+function generateStrongPassword($length = 16, $available_sets = 'luds')
+{
+	$sets = array();
+	if(strpos($available_sets, 'l') !== false)
+		$sets[] = 'abcdefghjkmnpqrstuvwxyz';
+	if(strpos($available_sets, 'u') !== false)
+		$sets[] = 'ABCDEFGHJKMNPQRSTUVWXYZ';
+	if(strpos($available_sets, 'd') !== false)
+		$sets[] = '23456789';
+	if(strpos($available_sets, 's') !== false)
+		$sets[] = '!@#$%&*?';
+
+	$all = '';
+	$password = '';
+	foreach($sets as $set)
+	{
+		$password .= $set[array_rand(str_split($set))];
+		$all .= $set;
+	}
+
+	$all = str_split($all);
+	for($i = 0; $i < $length - count($sets); $i++)
+		$password .= $all[array_rand($all)];
+
+	$password = str_shuffle($password);
+
+	return $password;
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -60,6 +93,10 @@
         <?php }
         else { ?>
             <div id="password_generator">
+                <?php
+                    $clear_pass = generateStrongPassword();
+                    $hashed_pass = password_hash($clear_pass, PASSWORD_BCRYPT);
+                ?>
                 <form action='' method='POST'>
                     <fieldset>
                         <table>
@@ -69,11 +106,24 @@
                             </tr>
                             <tr>
                                 <td><label for='generated_password'>Password</label></td>
-                                <td><input type='textbox' id='generated_password' name="gen_pass"></td>
+                                <td><input 
+                                    type='textbox' 
+                                    id='generated_password' 
+                                    name='gen_pass' 
+                                    value='<?php
+                                        echo ($clear_pass);
+                                    ?>'>
+                                </td>
                             </tr>
                             <tr>
                                 <td><label for='hashed_password'>Hashed</label></td>
-                                <td><input type='textbox' id='hashed_password' name='hash_pass'></td>
+                                <td><input 
+                                    type='textbox' 
+                                    id='hashed_password' 
+                                    name='hash_pass' 
+                                    value='<?php
+                                        echo ($hashed_pass);
+                                    ?>'></td>
                             </tr>
                             <tr>
                                 <td><input type='button' value='Назад'></td>
