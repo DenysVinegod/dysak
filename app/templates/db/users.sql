@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Час створення: Лют 08 2023 р., 21:40
--- Версія сервера: 10.4.27-MariaDB
--- Версія PHP: 8.2.0
+-- Час створення: Лют 11 2023 р., 16:22
+-- Версія сервера: 10.4.24-MariaDB
+-- Версія PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,9 +29,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `users` (
   `id` int(5) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL COMMENT 'php password_hash(pass, PASSWORD_BCRYPT)',
+  `last_visit` datetime DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Індекси збережених таблиць
@@ -41,7 +44,10 @@ CREATE TABLE `users` (
 -- Індекси таблиці `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `username_2` (`username`);
 
 --
 -- AUTO_INCREMENT для збережених таблиць

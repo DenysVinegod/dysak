@@ -1,3 +1,32 @@
+<?php 
+    session_start();
+
+    if (isset($_GET['logout'])) {
+        session_destroy();
+        header('Location: /app/views/sign_in.php');
+        exit();
+    }
+
+    if (!isset($_SESSION['signIn_status'])) {
+        $_SESSION['signIn_status'] = 'unauthorized';
+        header('Location: /app/views/sign_in.php');
+        exit();
+    } else if ($_SESSION['signIn_status'] != 'authorized') {
+        $_SESSION['caution'] = 'Користувач не пройшов авторизацію!';
+        header('Location: /app/views/sign_in.php');
+        exit();
+    }
+
+    if (isset($_SESSION['caution'])) {
+        if (isset($_GET['caution'])) {
+            if ($_GET['caution'] == 'ok') {
+                unset($_SESSION['caution']);
+                header('Location: .');
+            }
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,22 +45,7 @@
 
     <?php
 
-    session_start();
-    if (!isset($_SESSION['auth'])) {
-        $_SESSION['auth'] = 'unauthorized';
-        $_SESSION['caution'] = 'Користувач не пройшов авторизацію!';
-        header('Location: /app/views/sign_in.php');
-        die();
-    }
-
     if (isset($_SESSION['caution'])) {
-        if (isset($_GET['caution'])) {
-            if ($_GET['caution'] == 'ok') {
-                $_SESSION['caution'] = '';
-                header('Location: .');
-            }
-        }
-        
         if ($_SESSION['caution'] !== '') { ?>
             <div id="caution">
                 <?php echo $_SESSION['caution']; ?>
@@ -40,12 +54,11 @@
         <?php }
     }
 
-    if (isset($_SESSION['logout'])) {
-        session_destroy();
-    }
-
     var_dump($_SESSION);
     ?>
 
+    
+    <a href=".?logout">Log out!</a>
+    
     </body>
 </html>

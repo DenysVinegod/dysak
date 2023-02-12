@@ -2,9 +2,9 @@
 
 $db_settings = array(
     'server_ip' => '',
-    'username'  => '';
-    'password'  => '';
-    'base_name' => 'dysak';
+    'username'  => '',
+    'password'  => '',
+    'base_name' => 'dysak'
 );
 
 ?>

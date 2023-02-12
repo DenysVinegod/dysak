@@ -9,6 +9,10 @@ html {
     margin-bottom: 50px;
 }
 
+#message {
+    text-align: center;
+}
+
 form{
     width: 40%;
     margin: 0 auto;
@@ -32,7 +36,7 @@ table td.label {
     padding-right: 30px;
 }
 
-input[type=submit] {
+input[type=submit], input[type=button] {
     margin-top: 10px;
     background-color: #100505;
     color: white;
@@ -41,8 +45,15 @@ input[type=submit] {
     float: right;
 }
 
-#password_generator > form {
+input[type=submit]:hover, input[type=button]:hover {
+    cursor: pointer;
+}
+
+input[type=button] {
+    float: none;
+}
+
+#password_generator{
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
 }

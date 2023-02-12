@@ -19,51 +19,67 @@
         <img src='/app/asserts/images/logo.png'>
     </div>
 
-    <form action='' method='POST' id='sign_in'>
-
-        <fieldset>
-            <table>
-                <tr>
-                    <th></th>
-                    <th colspan=2>Авторизуйтесь</th>
-                </tr>
-                <tr>
-                    <td class="label">Логін</td>
-                    <td colspan=2><input type='text' name='user_name' required></td>
-                </tr>
-                <tr>
-                    <td class="label">Пароль</td>
-                    <td colspan=2><input type='password' name='user_pass' required></td>
-                </tr>
-                <tr>
-                    <td class="label"></td>
-                    <td>Запам'ятати пристрій</td>
-                    <td><input type="checkbox" name="remember_me" value="true"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td colspan=2><input type='submit'></td>
-                </tr>
-            </table>
-        </fieldset>
-    </form>
-
     <?php
-        if (isset($_GET['passgen'])) { ?>
+        session_start();
+        if (!isset($_GET['passgen'])) { ?>
+            <form action='/app/controllers/sign_in.php' method='POST' id='sign_in'>
+                <?php if (isset($_SESSION['caution'])) {?>
+                    <fieldset id="message">
+                        <?php 
+                            echo($_SESSION['caution']); 
+                            unset($_SESSION['caution']);
+                        ?>
+                    </fieldset>
+                <?php } ?>
+                <fieldset>
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th colspan=2>Авторизуйтесь</th>
+                        </tr>
+                        <tr>
+                            <td class="label">Логін</td>
+                            <td colspan=2><input type='text' name='user_name' required></td>
+                        </tr>
+                        <tr>
+                            <td class="label">Пароль</td>
+                            <td colspan=2><input type='password' name='user_pass' required></td>
+                        </tr>
+                        <tr>
+                            <td class="label"></td>
+                            <td>Запам'ятати пристрій</td>
+                            <td><input type="checkbox" name="remember_me" value="true"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td colspan=2><input type='submit' value="Вхід"></td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </form>
+        <?php }
+        else { ?>
             <div id="password_generator">
                 <form action='' method='POST'>
                     <fieldset>
-                        <div>
-                            <label for='generated_password'>Password</label>
-                            <input type='textbox' id='generated_password' name="gen_pass">
-                        </div>
-                        <div>
-                            <label for='hashed_password'>Hashed</label>
-                            <input type='textbox' id='hashed_password' name='hash_pass'>
-                        </div>
-                        <div>
-                            <input type='submit' value='Генерувати!'>
-                        </div>
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th>Генератор/<br>кодувальник</hd>
+                            </tr>
+                            <tr>
+                                <td><label for='generated_password'>Password</label></td>
+                                <td><input type='textbox' id='generated_password' name="gen_pass"></td>
+                            </tr>
+                            <tr>
+                                <td><label for='hashed_password'>Hashed</label></td>
+                                <td><input type='textbox' id='hashed_password' name='hash_pass'></td>
+                            </tr>
+                            <tr>
+                                <td><input type='button' value='Назад'></td>
+                                <td><input type='submit' value='Генерувати!'></td>
+                            </tr>
+                        </table>
                     </fieldset>
                 </form>
             </div>
