@@ -36,7 +36,7 @@ table td.label {
     padding-right: 30px;
 }
 
-input[type=submit], input[type=button] {
+input[type=submit], input[type=button], a.button {
     margin-top: 10px;
     background-color: #100505;
     color: white;
@@ -51,6 +51,10 @@ input[type=submit]:hover, input[type=button]:hover {
 
 input[type=button] {
     float: none;
+}
+
+a.button {
+    text-decoration: none;
 }
 
 #password_generator{

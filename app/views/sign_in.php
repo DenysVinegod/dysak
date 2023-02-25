@@ -126,7 +126,7 @@ function generateStrongPassword($length = 16, $available_sets = 'luds')
                                     ?>'></td>
                             </tr>
                             <tr>
-                                <td><input type='button' value='Назад'></td>
+                                <td><a class="button" href="/app/views/sign_in.php">Назад</a></td>
                                 <td><input type='submit' value='Генерувати!'></td>
                             </tr>
                         </table>
